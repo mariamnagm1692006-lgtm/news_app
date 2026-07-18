@@ -1,12 +1,11 @@
-sealed class ResultApi <T>{}
+sealed class ResultApi<T> {}
 
-class Success<T> extends ResultApi<T>{
+class Success<T> extends ResultApi<T> {
   T? data;
   Success(this.data);
 }
 
-class Error<T> extends ResultApi<T>{
+class Error<T> extends ResultApi<T> {
   String messageaEroor;
   Error(this.messageaEroor);
-
 }

@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/api/result_api.dart';
 import 'package:news_app/features/home/data/api/api.dart';
 import 'package:news_app/features/home/data/models/model.dart';
-import 'package:news_app/features/home/view_model/home_state.dart';
+import 'package:news_app/features/home/view_model/home_cubit/home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
