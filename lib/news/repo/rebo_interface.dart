@@ -1,3 +1,3 @@
 abstract interface class ReboInterface {
-  void getNews();
+  Future<List<String>> getNews();
 }

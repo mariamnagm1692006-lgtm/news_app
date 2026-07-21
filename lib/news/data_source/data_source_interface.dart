@@ -1,3 +1,3 @@
 abstract interface class DataSourceInterface {
-  void getNews();
+  Future<List<String>> getNews();
 }

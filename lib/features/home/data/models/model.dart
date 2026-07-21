@@ -1,23 +1,33 @@
-class NewsModel {
+import 'package:news_app/features/home/domain/entity/news_entity.dart';
+
+class NewsDto {
   String? status;
   int? totalResults;
-  List<Article>? articles;
+  List<ArticleDto>? articles;
 
-  NewsModel({this.status, this.totalResults, this.articles});
+  NewsDto({this.status, this.totalResults, this.articles});
 
-  NewsModel.fromJson(Map<String, dynamic> json) {
+  NewsDto.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     totalResults = json['totalResults'];
     if (json['articles'] != null) {
-      articles = <Article>[];
+      articles = <ArticleDto>[];
       json['articles'].forEach((v) {
-        articles!.add(Article.fromJson(v));
+        articles!.add(ArticleDto.fromJson(v));
       });
     }
   }
+
+  NewsEntity toEntity() {
+    return NewsEntity(
+      articles: articles?.map((e) => e.toEntity()).toList() ?? [],
+      status: status ?? '',
+      totalResults: totalResults ?? 0,
+    );
+  }
 }
 
-class Article {
+class ArticleDto {
   String? author;
   String? title;
   String? description;
@@ -25,7 +35,7 @@ class Article {
   String? urlToImage;
   String? content;
 
-  Article({
+  ArticleDto({
     this.author,
     this.title,
     this.description,
@@ -34,12 +44,23 @@ class Article {
     this.content,
   });
 
-  Article.fromJson(Map<String, dynamic> json) {
+  ArticleDto.fromJson(Map<String, dynamic> json) {
     author = json['author'];
     title = json['title'];
     description = json['description'];
     url = json['url'];
     urlToImage = json['urlToImage'];
     content = json['content'];
+  }
+
+  ArticleEntity toEntity() {
+    return ArticleEntity(
+      author: author ?? '',
+      title: title ?? '',
+      description: description ?? '',
+      url: url ?? '',
+      urlToImage: urlToImage ?? '',
+      content: content ?? '',
+    );
   }
 }

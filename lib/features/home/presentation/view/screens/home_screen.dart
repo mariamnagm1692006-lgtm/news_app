@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/features/home/view_model/home_cubit/home_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/features/home/view_model/home_cubit/home_state.dart';
-
+import 'package:news_app/features/home/domain/use_case/get_news_use_case.dart';
+import '../../view_model/home_cubit/home_cubit.dart';
+import '../../view_model/home_cubit/home_state.dart';
 import '../widget/image_item_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
-      create: (context) => HomeCubit()..fetchNews(),
+      create: (context) =>
+          HomeCubit(getNewsUseCaseInjectable())
+            ..intent(FetchNewsIntent('1')),
       child: Scaffold(
         backgroundColor: Color(0xff202020),
         appBar: AppBar(
@@ -47,9 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: state.articles.length,
                   itemBuilder: (context, index) {
                     return ImageItemWidget(
-                      image: state.articles[index].urlToImage ?? dummyImage,
+                      image: state.articles[index].urlToImage ,
                       title:
-                          state.articles[index].title ?? 'No Title Available',
+                          state.articles[index].title ,
                       onTap: () {},
                     );
                   },
@@ -65,5 +67,5 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-String dummyImage =
+const String dummyImage =
     'https://images.theconversation.com/files/651621/original/file-20250226-32-jxjhmy.jpg?ixlib=rb-4.1.0&rect=0%2C0%2C5991%2C3997&q=20&auto=format&w=320&fit=clip&dpr=2&usm=12&cs=strip';

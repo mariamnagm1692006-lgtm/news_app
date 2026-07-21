@@ -1,4 +1,5 @@
 import 'package:news_app/features/home/data/models/model.dart';
+import 'package:news_app/features/home/domain/entity/news_entity.dart';
 
 sealed class HomeState {}
 
@@ -7,7 +8,7 @@ class HomeInitial extends HomeState {}
 class HomeLoading extends HomeState {}
 
 class HomeSuccess extends HomeState {
-  List<Article> articles;
+  List<ArticleEntity> articles;
   HomeSuccess(this.articles);
 }
 
