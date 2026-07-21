@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'core/di/service_locator.dart';
 import 'features/home/presentation/view/screens/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+
+  configureDependencies();
   runApp(const MyApp());
 }
 

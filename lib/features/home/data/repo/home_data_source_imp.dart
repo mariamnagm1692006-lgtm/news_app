@@ -1,11 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'package:injectable/injectable.dart';
 import 'package:news_app/core/api/result_api.dart';
 import 'package:news_app/features/home/data/models/model.dart';
 import 'package:news_app/features/home/domain/entity/news_entity.dart';
 import 'package:news_app/features/home/domain/repo/home_data_source_interface.dart';
-
+@Injectable(as: HomeDataSourceInterface)
 class HomeDataSourceImp implements HomeDataSourceInterface {
   @override
   Future<ResultApi<NewsEntity>> getNews() async {
@@ -28,4 +29,3 @@ class HomeDataSourceImp implements HomeDataSourceInterface {
   }
 }
 
-HomeDataSourceInterface homeDataSourceImpInjectable() => HomeDataSourceImp();

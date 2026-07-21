@@ -1,4 +1,3 @@
-import 'package:news_app/features/home/data/models/model.dart';
 import 'package:news_app/features/home/domain/entity/news_entity.dart';
 
 sealed class HomeState {}
